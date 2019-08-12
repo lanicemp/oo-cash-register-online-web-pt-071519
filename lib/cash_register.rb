@@ -9,13 +9,13 @@ class CashRegister
     @discount = discount 
     @employee_discount = employee_discount
     @items = []
-    @transactions = []
+    @transactions = 0
     @price = price 
   end 
   
   def add_item(title, price, quantity=1)
     @total += price * quantity
-    @transactions << price 
+    @transactions = price * quantity 
     i = quantity
     until i == 0 do
       @items << title
@@ -39,7 +39,7 @@ class CashRegister
   end
   
   def void_last_transaction
-     self.total = @total - @transactions.pop 
+     self.total -= @transactions 
    # else
     # binding.pry 
    # self.total = @total - @transactions.all
